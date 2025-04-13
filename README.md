@@ -1,66 +1,154 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛒 Product Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel-based RESTful API with built-in authentication, product inventory, and order management features. Built for performance, scalability, and clean architecture.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Key Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🔐 Authentication
+- User registration & login with **Laravel Sanctum**
+- Role-based access: Admin & Customer
+- Token-based API authentication
+- CSRF protection, password hashing, rate limiting
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🛍️ Product Management
+- CRUD operations on products (Admin-only)
+- Product image upload support
+- List & filter products by categories
+- **Caching** for enhanced performance
 
-## Learning Laravel
+### 📦 Order Management
+- Create new orders
+- View order history & order details
+- Pivot table to manage product quantity & pricing in orders
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 📘 API Documentation
+- Fully documented via **Postman**
+### 🧪 Testing
+- Feature & unit tests with assertions and mocking
+- Supports `.env.testing` for isolated test database
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 📚 API Endpoints
 
-## Laravel Sponsors
+### 🔐 Authentication
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+| Endpoint        | Method | Description          |
+|----------------|--------|----------------------|
+| `/api/register`| POST   | Register new user    |
+| `/api/login`   | POST   | User login/token     |
+| `/api/logout`  | POST   | Logout current user  |
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 🛍️ Product Management
 
-## Contributing
+| Endpoint                                | Method | Description                        |
+|-----------------------------------------|--------|------------------------------------|
+| `/api/products`                         | GET    | List all products                  |
+| `/api/products?category_id[]=1&...`     | GET    | Filter products by category        |
+| `/api/products/{id}`                    | GET    | View product details               |
+| `/api/products`                         | POST   | Create product (Admin only)        |
+| `/api/products/{id}`                    | PUT    | Update product (Admin only)        |
+| `/api/products/{id}`                    | DELETE | Delete product (Admin only)        |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+### 📦 Order Management
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+| Endpoint              | Method | Description               |
+|-----------------------|--------|---------------------------|
+| `/api/orders`         | POST   | Create new order          |
+| `/api/orders/history` | GET    | View all order history    |
+| `/api/orders/{id}`    | GET    | View a specific order     |
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🛠️ Setup Instructions
 
-## License
+### 1. Clone the Repository
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+git clone https://github.com/sreejaunni/product-management-system.git
+cd product-management-system
+```
+### 2.  Install Dependencies
+
+```bash
+composer install
+```
+### 3. Set Up Environment
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+### 4. Set Up Database
+
+```bash
+CREATE DATABASE product_management_system;
+```
+Update the .env file with your local database credentials:
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=product_management_system
+DB_USERNAME=root
+DB_PASSWORD=
+```
+### 5. Run Migrations & Seeders
+
+```bash
+php artisan migrate --seed
+```
+### 6. Run the Application
+
+```bash
+php artisan serve
+```
+
+## ✅ Running Tests
+
+### 1. Set Up test Database
+Create a new test database:
+```bash
+CREATE DATABASE product_management_system_test;
+```
+Update the .env.testing file with the test database credentials:
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=product_management_system_test
+DB_USERNAME=root
+DB_PASSWORD=
+```
+### 2. Run All Tests
+
+```bash
+php artisan test --env=testing
+```
+
+## 🧪 Postman Collection
+
+This project includes a Postman collection and environment setup to help you quickly test and interact with the API.
+
+### 🔗 Files
+- [Product Management API Collection](https://github.com/sreejaunni/product-management-api-collection/blob/main/product-management-collection.json
+  )
+- [Product Management Environment](https://github.com/sreejaunni/product-management-api-collection/blob/main/product-management-environment.json
+  )
+
+### 🚀 How to Use
+
+1. Open Postman.
+2. Import the collection:
+    - Click **Import** → **Upload Files** → Select `product-management-collection.json`.
+3. Import the environment:
+    - Click **Environments** (⚙️ icon) → **Import** → Select `product-management-environment.json`.
+4. Select the imported environment from the top-right dropdown in Postman.
+5. Use the preconfigured requests to test the API endpoints.

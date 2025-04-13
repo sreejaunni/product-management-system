@@ -13,7 +13,7 @@ class CreateOrderRequest extends FormRequest
      */
     public function authorize()
     {
-        // You can check if the user is authenticated or has certain roles/permissions
+        // You can check if the user is authenticated
         return auth()->check(); // Allow if the user is authenticated
     }
 
