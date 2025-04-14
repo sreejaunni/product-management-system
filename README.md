@@ -83,6 +83,26 @@ A Laravel-based RESTful API with built-in authentication, product inventory, and
 
 ---
 
+## 🧪 Postman Collection
+
+This project includes a Postman collection and environment setup to help you quickly test and interact with the API.
+
+### 🔗 Files
+- [Product Management API Collection](https://github.com/sreejaunni/product-management-api-collection/blob/main/product-management-collection.json
+  )
+- [Product Management Environment](https://github.com/sreejaunni/product-management-api-collection/blob/main/product-management-environment.json
+  )
+
+### 🚀 How to Use
+
+1. Open Postman.
+2. Import the collection:
+    - Click **Import** → **Upload Files** → Select `product-management-collection.json`.
+3. Import the environment:
+    - Click **Environments** (⚙️ icon) → **Import** → Select `product-management-environment.json`.
+4. Select the imported environment from the top-right dropdown in Postman.
+5. Use the preconfigured requests to test the API endpoints.
+
 ## 🛠️ Setup Instructions- Local
 
 ### 1. Clone the Repository
@@ -172,22 +192,4 @@ DB_PASSWORD=root
 docker exec -it laravel_app php artisan key:generate
 ```
 
-## 🧪 Postman Collection
 
-This project includes a Postman collection and environment setup to help you quickly test and interact with the API.
-
-### 🔗 Files
-- [Product Management API Collection](https://github.com/sreejaunni/product-management-api-collection/blob/main/product-management-collection.json
-  )
-- [Product Management Environment](https://github.com/sreejaunni/product-management-api-collection/blob/main/product-management-environment.json
-  )
-
-### 🚀 How to Use
-
-1. Open Postman.
-2. Import the collection:
-    - Click **Import** → **Upload Files** → Select `product-management-collection.json`.
-3. Import the environment:
-    - Click **Environments** (⚙️ icon) → **Import** → Select `product-management-environment.json`.
-4. Select the imported environment from the top-right dropdown in Postman.
-5. Use the preconfigured requests to test the API endpoints.
