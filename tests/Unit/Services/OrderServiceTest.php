@@ -2,8 +2,10 @@
 
 namespace Tests\Unit\Services;
 
+use App\Repositories\Interfaces\ProductRepositoryInterface;
 use Tests\TestCase;
 use App\Services\OrderService;
+use App\Services\ProductService;
 use App\Repositories\Interfaces\OrderRepositoryInterface;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
@@ -15,13 +17,19 @@ class OrderServiceTest extends TestCase
     protected $orderRepositoryMock;
     protected $orderService;
 
+    protected $productService;
+
     protected function setUp(): void
     {
         parent::setUp();
 
+        // Mock the ProductRepositoryInterface
+        $this->productRepositoryMock = Mockery::mock(ProductRepositoryInterface::class);
+        $this->productService = new ProductService($this->productRepositoryMock);
         // Mock the OrderRepositoryInterface
         $this->orderRepositoryMock = Mockery::mock(OrderRepositoryInterface::class);
-        $this->orderService = new OrderService($this->orderRepositoryMock);
+        $this->orderService = new OrderService($this->orderRepositoryMock, $this->productService);
+
     }
 
     /**
