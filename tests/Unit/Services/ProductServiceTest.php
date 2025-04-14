@@ -7,6 +7,8 @@ use App\Services\ProductService;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\Product;
+use App\Exceptions\InsufficientStockException;
 
 class ProductServiceTest extends TestCase
 {
@@ -134,4 +136,63 @@ class ProductServiceTest extends TestCase
         $this->expectException(\App\Exceptions\ProductNotFoundException::class);
         $this->productService->getById($productId);
     }
+
+    /**
+     * Test decreaseStock when the product exists and there is enough stock.
+     *
+     * @return void
+     */
+    public function testDecreaseStockSuccess()
+    {
+        // Create a mock product and simulate property access
+        $product = $this->getMockBuilder(Product::class)
+            ->onlyMethods(['save'])
+            ->getMock();
+
+        // Set initial stock quantity
+        $product->stock_quantity = 10;
+
+        // Expect save to be called and return true
+        $product->expects($this->once())
+            ->method('save')
+            ->willReturn(true);
+
+        // Set the repo to return the product when find is called
+        $this->productRepositoryMock->method('find')
+            ->with(1)
+            ->willReturn($product);
+
+        // Call decreaseStock
+        $result = $this->productService->decreaseStock(1, 5);
+
+        // Assert success
+        $this->assertTrue($result);
+        $this->assertEquals(5, $product->stock_quantity);
+    }
+
+    public function testDecreaseStockInsufficientStock()
+    {
+        // Create a mock product with 2 units in stock
+        $product = $this->getMockBuilder(Product::class)
+            ->onlyMethods(['save'])
+            ->getMock();
+        $product->stock_quantity = 2;
+
+        // Expect find(1) to be called and return the mocked product
+        $this->productRepositoryMock
+            ->expects($this->once())
+            ->method('find')
+            ->with(1)
+            ->willReturn($product);
+
+
+        // Expect the exception
+        $this->expectException(InsufficientStockException::class);
+        $this->expectExceptionMessage('Not enough stock available');
+
+        // Attempt to decrease stock more than available
+        $this->productService->decreaseStock(1, 5);
+    }
+
+
 }

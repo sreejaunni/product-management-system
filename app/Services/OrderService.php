@@ -5,15 +5,19 @@ namespace App\Services;
 use App\Repositories\Interfaces\OrderRepositoryInterface;
 use App\Models\Order;
 use Illuminate\Database\Eloquent\Collection;
+use App\Services\ProductService;
 
 class OrderService
 {
 
     protected $orderRepository;
+    protected $productService;
 
-    public function __construct(OrderRepositoryInterface $orderRepository)
+    public function __construct(OrderRepositoryInterface $orderRepository,ProductService $productService)
     {
         $this->orderRepository = $orderRepository;
+        $this->productService = $productService;
+
     }
 
     /**
@@ -21,9 +25,17 @@ class OrderService
      *
      * @param array $data
      * @return \App\Models\Order
+     * @throws \Exception
      */
     public function createOrder(array $data): Order
     {
+        if(!empty($data['order_items'])){
+            foreach ($data['order_items'] as $item) {
+                // Decrease stock for each product in the order
+                $this->productService->decreaseStock($item['product_id'], $item['quantity']);
+            }
+        }
+
         // Use the repository to create the order and its order items
         return $this->orderRepository->createOrder($data);
     }
