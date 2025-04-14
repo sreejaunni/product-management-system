@@ -150,7 +150,7 @@ DB_PASSWORD=
 php artisan test --env=testing
 ```
 
-Setup Instructions - Docker
+## 🛠️ Setup Instructions - Docker
 
 ### 1. Build and start containers:
 ```bash
