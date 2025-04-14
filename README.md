@@ -23,6 +23,9 @@ A Laravel-based RESTful API with built-in authentication, product inventory, and
 - View order history & order details
 - Pivot table to manage product quantity & pricing in orders
 
+### 📦 Inventory Management
+- Product inventory management (decreasing stock on orders)
+
 ### 📘 API Documentation
 - Fully documented via **Postman**
 ### 🧪 Testing
