@@ -31,6 +31,20 @@ A Laravel-based RESTful API with built-in authentication, product inventory, and
 
 ---
 
+## 🧰 Tech Stack
+
+- **Framework:** Laravel 12.x
+- **Language:** PHP 8.x
+- **Authentication:** Laravel Sanctum
+- **Database:** MySQL
+- **ORM:** Eloquent
+- **Testing:** PHPUnit
+- **API Docs:** Postman
+- **Package Manager:** Composer
+- **Caching:** Laravel default
+- **Environment Management:** Dotenv
+- **Dev Tools:** Laravel Artisan, Postman
+
 ## 📚 API Endpoints
 
 ### 🔐 Authentication
