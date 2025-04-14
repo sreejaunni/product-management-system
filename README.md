@@ -83,7 +83,7 @@ A Laravel-based RESTful API with built-in authentication, product inventory, and
 
 ---
 
-## 🛠️ Setup Instructions
+## 🛠️ Setup Instructions- Local
 
 ### 1. Clone the Repository
 
@@ -148,6 +148,29 @@ DB_PASSWORD=
 
 ```bash
 php artisan test --env=testing
+```
+
+Setup Instructions - Docker
+
+### 1. Build and start containers:
+```bash
+docker-compose up --build -d
+```
+### 2. Update the .env file for db connection:
+```bash
+ cp .env.example .env
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=product_management_system
+DB_USERNAME=root
+DB_PASSWORD=root
+```
+### 1. Run setup inside the container:
+```bash
+docker exec -it laravel_app php artisan key:generate
+docker exec -it laravel_app php artisan migrate
 ```
 
 ## 🧪 Postman Collection
