@@ -170,7 +170,6 @@ DB_PASSWORD=root
 ### 1. Run setup inside the container:
 ```bash
 docker exec -it laravel_app php artisan key:generate
-docker exec -it laravel_app php artisan migrate
 ```
 
 ## 🧪 Postman Collection
